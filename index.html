@@ -262,12 +262,17 @@
                 </div>
 
                 <form id="consultaForm" action="https://formspree.io/f/mzzvgjrd" method="POST">
-                    <div class="space-y-4">
-                        <div>
-                            <label class="block mb-1 font-medium lang-pt">Nome Completo</label>
-                            <label class="block mb-1 font-medium lang-es hidden">Nombre Completo</label>
-                            <input type="text" name="nome" id="nome" class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" required>
-                        </div>
+                    <div>
+                        <label class="block mb-1 font-medium lang-pt">Nome</label>
+                        <label class="block mb-1 font-medium lang-es hidden">Nombre</label>
+                        <input type="text" name="nome" id="nome" class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" required>
+                    </div>
+                    
+                    <div class="mt-4">
+                        <label class="block mb-1 font-medium lang-pt">Sobrenome</label>
+                        <label class="block mb-1 font-medium lang-es hidden">Apellido</label>
+                        <input type="text" name="sobrenome" id="sobrenome" class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" required>
+                    </div>
                         
                         <div>
                             <label class="block mb-1 font-medium lang-pt">Telefone / WhatsApp</label>
@@ -380,7 +385,7 @@
             event.preventDefault();
             
             // Basic form validation
-            const requiredFields = ['nome', 'telefone', 'email', 'pais', 'situacao'];
+            const requiredFields = ['nome', 'sobrenome', 'telefone', 'email', 'pais', 'situacao'];
             let isValid = true;
             
             requiredFields.forEach(field => {
