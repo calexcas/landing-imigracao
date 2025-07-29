@@ -1,0 +1,447 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Consultoria de Imigração | Consultoría de Inmigración</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #0077B6;
+            --secondary-color: #00B4D8;
+            --accent-color: #48CAE4;
+            --background-color: #CAF0F8;
+            --text-color: #03045E;
+        }
+        
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, #CAF0F8 0%, #90E0EF 100%);
+            color: var(--text-color);
+            min-height: 100vh;
+        }
+        
+        .glass-card {
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border-radius: 10px;
+            border: 1px solid rgba(255, 255, 255, 0.18);
+            box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.15);
+        }
+        
+        .btn-primary {
+            background: linear-gradient(90deg, #0077B6 0%, #00B4D8 100%);
+            color: white;
+            transition: all 0.3s ease;
+        }
+        
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0, 119, 182, 0.4);
+        }
+
+        .btn-secondary {
+            background: linear-gradient(90deg, #06d6a0 0%, #1b9aaa 100%);
+            color: white;
+            transition: all 0.3s ease;
+        }
+        
+        .btn-secondary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(6, 214, 160, 0.4);
+        }
+        
+        .toast {
+            visibility: hidden;
+            position: fixed;
+            z-index: 100;
+            bottom: 30px;
+            right: 30px;
+            background-color: #4CAF50;
+            color: white;
+            padding: 16px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+        
+        .toast.show {
+            visibility: visible;
+            animation: fadeIn 0.5s, fadeOut 0.5s 2.5s;
+        }
+        
+        @keyframes fadeIn {
+            from {opacity: 0;}
+            to {opacity: 1;}
+        }
+        
+        @keyframes fadeOut {
+            from {opacity: 1;}
+            to {opacity: 0;}
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        .language-active {
+            font-weight: bold;
+            color: var(--primary-color);
+            text-decoration: underline;
+        }
+
+        /* Ensure form inputs are visible in PDF */
+        @media print {
+            input, select, textarea {
+                border: 1px solid #ccc;
+            }
+        }
+    </style>
+</head>
+<body class="p-4">
+    <div class="toast" id="toast">
+        <i class="fas fa-check-circle mr-2"></i>
+        <span id="toast-message">Formulário enviado com sucesso!</span>
+    </div>
+
+    <div class="container mx-auto max-w-6xl">
+        <!-- Language Toggle -->
+        <div class="flex justify-end mb-4">
+            <div class="language-toggle glass-card p-2 inline-flex rounded-full">
+                <button id="pt-btn" class="px-3 py-1 language-active" onclick="changeLanguage('pt')">PT</button>
+                <button id="es-btn" class="px-3 py-1" onclick="changeLanguage('es')">ES</button>
+            </div>
+        </div>
+
+        <!-- Header -->
+        <header class="text-center mb-8">
+            <div class="lang-pt">
+                <h1 class="text-4xl font-bold text-blue-900 mb-2">Consultoria de Imigração</h1>
+                <p class="text-xl">Seu caminho seguro para uma nova vida</p>
+            </div>
+            <div class="lang-es hidden">
+                <h1 class="text-4xl font-bold text-blue-900 mb-2">Consultoría de Inmigración</h1>
+                <p class="text-xl">Su camino seguro hacia una nueva vida</p>
+            </div>
+        </header>
+
+        <!-- Main Content -->
+        <div class="grid md:grid-cols-2 gap-8">
+            <!-- Left Column: Benefits -->
+            <div>
+                <div class="glass-card p-6 mb-8">
+                    <div class="lang-pt">
+                        <h2 class="text-2xl font-semibold mb-4 flex items-center">
+                            <i class="fas fa-star text-yellow-500 mr-2"></i>
+                            Por que nos escolher?
+                        </h2>
+                        <ul class="space-y-3">
+                            <li class="flex items-start">
+                                <i class="fas fa-check-circle text-green-600 mt-1 mr-2"></i>
+                                <span>Consultores especializados com anos de experiência</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-check-circle text-green-600 mt-1 mr-2"></i>
+                                <span>Acompanhamento personalizado em cada etapa do processo</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-check-circle text-green-600 mt-1 mr-2"></i>
+                                <span>Alta taxa de aprovação em processos imigratórios</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-check-circle text-green-600 mt-1 mr-2"></i>
+                                <span>Atendimento em português e espanhol</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-check-circle text-green-600 mt-1 mr-2"></i>
+                                <span>Preços acessíveis e planos flexíveis</span>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="lang-es hidden">
+                        <h2 class="text-2xl font-semibold mb-4 flex items-center">
+                            <i class="fas fa-star text-yellow-500 mr-2"></i>
+                            ¿Por qué elegirnos?
+                        </h2>
+                        <ul class="space-y-3">
+                            <li class="flex items-start">
+                                <i class="fas fa-check-circle text-green-600 mt-1 mr-2"></i>
+                                <span>Consultores especializados con años de experiencia</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-check-circle text-green-600 mt-1 mr-2"></i>
+                                <span>Seguimiento personalizado en cada etapa del proceso</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-check-circle text-green-600 mt-1 mr-2"></i>
+                                <span>Alta tasa de aprobación en procesos inmigratorios</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-check-circle text-green-600 mt-1 mr-2"></i>
+                                <span>Atención en portugués y español</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-check-circle text-green-600 mt-1 mr-2"></i>
+                                <span>Precios accesibles y planes flexibles</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="glass-card p-6">
+                    <div class="lang-pt">
+                        <h2 class="text-2xl font-semibold mb-4 flex items-center">
+                            <i class="fas fa-list-alt text-blue-600 mr-2"></i>
+                            Nossos Serviços
+                        </h2>
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                            <div class="p-4 bg-blue-50 rounded-lg">
+                                <i class="fas fa-passport text-blue-800 text-2xl mb-2"></i>
+                                <h3 class="font-medium">Vistos de Trabalho</h3>
+                            </div>
+                            <div class="p-4 bg-blue-50 rounded-lg">
+                                <i class="fas fa-user-graduate text-blue-800 text-2xl mb-2"></i>
+                                <h3 class="font-medium">Vistos de Estudo</h3>
+                            </div>
+                            <div class="p-4 bg-blue-50 rounded-lg">
+                                <i class="fas fa-home text-blue-800 text-2xl mb-2"></i>
+                                <h3 class="font-medium">Residência Permanente</h3>
+                            </div>
+                            <div class="p-4 bg-blue-50 rounded-lg">
+                                <i class="fas fa-users text-blue-800 text-2xl mb-2"></i>
+                                <h3 class="font-medium">Reunificação Familiar</h3>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="lang-es hidden">
+                        <h2 class="text-2xl font-semibold mb-4 flex items-center">
+                            <i class="fas fa-list-alt text-blue-600 mr-2"></i>
+                            Nuestros Servicios
+                        </h2>
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                            <div class="p-4 bg-blue-50 rounded-lg">
+                                <i class="fas fa-passport text-blue-800 text-2xl mb-2"></i>
+                                <h3 class="font-medium">Visados de Trabajo</h3>
+                            </div>
+                            <div class="p-4 bg-blue-50 rounded-lg">
+                                <i class="fas fa-user-graduate text-blue-800 text-2xl mb-2"></i>
+                                <h3 class="font-medium">Visados de Estudio</h3>
+                            </div>
+                            <div class="p-4 bg-blue-50 rounded-lg">
+                                <i class="fas fa-home text-blue-800 text-2xl mb-2"></i>
+                                <h3 class="font-medium">Residencia Permanente</h3>
+                            </div>
+                            <div class="p-4 bg-blue-50 rounded-lg">
+                                <i class="fas fa-users text-blue-800 text-2xl mb-2"></i>
+                                <h3 class="font-medium">Reunificación Familiar</h3>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Right Column: Form -->
+            <div class="glass-card p-6">
+                <div class="lang-pt">
+                    <h2 class="text-2xl font-semibold mb-4 flex items-center">
+                        <i class="fas fa-paper-plane text-blue-600 mr-2"></i>
+                        Solicite uma Consulta Gratuita
+                    </h2>
+                    <p class="mb-6 text-gray-700">Preencha o formulário abaixo e um de nossos consultores entrará em contato em breve para uma avaliação inicial sem compromisso.</p>
+                </div>
+                <div class="lang-es hidden">
+                    <h2 class="text-2xl font-semibold mb-4 flex items-center">
+                        <i class="fas fa-paper-plane text-blue-600 mr-2"></i>
+                        Solicite una Consulta Gratuita
+                    </h2>
+                    <p class="mb-6 text-gray-700">Complete el formulario a continuación y uno de nuestros consultores se pondrá en contacto con usted en breve para una evaluación inicial sin compromiso.</p>
+                </div>
+
+                <form id="consultaForm" action="https://formspree.io/f/mzzvgjrd" method="POST">
+                    <div class="space-y-4">
+                        <div>
+                            <label class="block mb-1 font-medium lang-pt">Nome Completo</label>
+                            <label class="block mb-1 font-medium lang-es hidden">Nombre Completo</label>
+                            <input type="text" name="nome" id="nome" class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" required>
+                        </div>
+                        
+                        <div>
+                            <label class="block mb-1 font-medium lang-pt">Telefone / WhatsApp</label>
+                            <label class="block mb-1 font-medium lang-es hidden">Teléfono / WhatsApp</label>
+                            <input type="tel" name="telefone" id="telefone" class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" required>
+                        </div>
+                        
+                        <div>
+                            <label class="block mb-1 font-medium lang-pt">Email</label>
+                            <label class="block mb-1 font-medium lang-es hidden">Correo Electrónico</label>
+                            <input type="email" name="email" id="email" class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" required>
+                        </div>
+                        
+                        <div>
+                            <label class="block mb-1 font-medium lang-pt">País de Interesse</label>
+                            <label class="block mb-1 font-medium lang-es hidden">País de Interés</label>
+                            <select name="pais" id="pais" class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" required>
+                                <option value="" class="lang-pt">Selecione um país</option>
+                                <option value="" class="lang-es hidden">Seleccione un país</option>
+                                <option value="EUA">EUA / Estados Unidos</option>
+                                <option value="Canada">Canadá</option>
+                                <option value="Portugal">Portugal</option>
+                                <option value="Espanha">Espanha / España</option>
+                                <option value="Australia">Austrália / Australia</option>
+                                <option value="Outro">Outro / Otro</option>
+                            </select>
+                        </div>
+                        
+                        <div>
+                            <label class="block mb-1 font-medium lang-pt">Situação Atual</label>
+                            <label class="block mb-1 font-medium lang-es hidden">Situación Actual</label>
+                            <select name="situacao" id="situacao" class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" required>
+                                <option value="" class="lang-pt">Selecione sua situação</option>
+                                <option value="" class="lang-es hidden">Seleccione su situación</option>
+                                <option value="Primeira_Imigracao" class="lang-pt">Primeira imigração</option>
+                                <option value="Primeira_Imigracao" class="lang-es hidden">Primera inmigración</option>
+                                <option value="Visto_Expirado" class="lang-pt">Visto expirado ou prestes a expirar</option>
+                                <option value="Visto_Expirado" class="lang-es hidden">Visa expirada o por expirar</option>
+                                <option value="Reunificacao" class="lang-pt">Reunificação familiar</option>
+                                <option value="Reunificacao" class="lang-es hidden">Reunificación familiar</option>
+                                <option value="Situacao_Irregular" class="lang-pt">Situação irregular</option>
+                                <option value="Situacao_Irregular" class="lang-es hidden">Situación irregular</option>
+                                <option value="Outro" class="lang-pt">Outro</option>
+                                <option value="Outro" class="lang-es hidden">Otro</option>
+                            </select>
+                        </div>
+                        
+                        <div>
+                            <label class="block mb-1 font-medium lang-pt">Mensagem (Opcional)</label>
+                            <label class="block mb-1 font-medium lang-es hidden">Mensaje (Opcional)</label>
+                            <textarea name="mensagem" id="mensagem" rows="3" class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"></textarea>
+                        </div>
+
+                        <div class="pt-2">
+                            <button type="submit" class="w-full py-3 px-4 btn-primary rounded-lg font-medium text-center lang-pt">
+                                <i class="fas fa-paper-plane mr-2"></i>Enviar Formulário
+                            </button>
+                            <button type="submit" class="w-full py-3 px-4 btn-primary rounded-lg font-medium text-center lang-es hidden">
+                                <i class="fas fa-paper-plane mr-2"></i>Enviar Formulario
+                            </button>
+                        </div>
+                        
+                        <div class="pt-3">
+                            <a href="https://wa.me/+17814731632?text=Olá,%20gostaria%20de%20informações%20sobre%20consultoria%20de%20imigração" target="_blank" class="w-full block py-3 px-4 btn-secondary rounded-lg font-medium text-center lang-pt">
+                                <i class="fab fa-whatsapp mr-2"></i>Falar com Consultor via WhatsApp
+                            </a>
+                            <a href="https://wa.me/+178147316329?text=Hola,%20me%20gustaría%20información%20sobre%20consultoría%20de%20inmigración" target="_blank" class="w-full block py-3 px-4 btn-secondary rounded-lg font-medium text-center lang-es hidden">
+                                <i class="fab fa-whatsapp mr-2"></i>Hablar con Consultor por WhatsApp
+                            </a>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <!-- Footer -->
+        <footer class="mt-12 text-center text-gray-700">
+            <div class="lang-pt">
+                <p>&copy; 2023 Consultoria de Imigração. Todos os direitos reservados.</p>
+            </div>
+            <div class="lang-es hidden">
+                <p>&copy; 2023 Consultoría de Inmigración. Todos los derechos reservados.</p>
+            </div>
+        </footer>
+    </div>
+
+    <script>
+        // Language toggle functionality
+        function changeLanguage(lang) {
+            const ptElements = document.querySelectorAll('.lang-pt');
+            const esElements = document.querySelectorAll('.lang-es');
+            const ptBtn = document.getElementById('pt-btn');
+            const esBtn = document.getElementById('es-btn');
+            
+            if (lang === 'pt') {
+                ptElements.forEach(el => el.classList.remove('hidden'));
+                esElements.forEach(el => el.classList.add('hidden'));
+                ptBtn.classList.add('language-active');
+                esBtn.classList.remove('language-active');
+            } else {
+                ptElements.forEach(el => el.classList.add('hidden'));
+                esElements.forEach(el => el.classList.remove('hidden'));
+                ptBtn.classList.remove('language-active');
+                esBtn.classList.add('language-active');
+            }
+        }
+
+        // Form submission and validation
+        document.getElementById('consultaForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+            
+            // Basic form validation
+            const requiredFields = ['nome', 'telefone', 'email', 'pais', 'situacao'];
+            let isValid = true;
+            
+            requiredFields.forEach(field => {
+                const element = document.getElementById(field);
+                if (!element.value.trim()) {
+                    element.classList.add('border-red-500');
+                    isValid = false;
+                } else {
+                    element.classList.remove('border-red-500');
+                }
+            });
+            
+            if (isValid) {
+                // Submit form to Formspree
+                const form = event.target;
+                const data = new FormData(form);
+                
+                fetch('https://formspree.io/f/mzzvgjrd', {
+                    method: 'POST',
+                    body: data,
+                    headers: {
+                        'Accept': 'application/json'
+                    }
+                })
+                .then(response => {
+                    if (response.ok) {
+                        // Show success toast
+                        const toast = document.getElementById('toast');
+                        const toastMessage = document.getElementById('toast-message');
+                        
+                        if (document.querySelector('.lang-pt').classList.contains('hidden')) {
+                            toastMessage.textContent = "Formulario enviado con éxito!";
+                        } else {
+                            toastMessage.textContent = "Formulário enviado com sucesso!";
+                        }
+                        
+                        toast.classList.add('show');
+                        
+                        setTimeout(function() {
+                            toast.classList.remove('show');
+                        }, 3000);
+                        
+                        // Reset form
+                        form.reset();
+                    } else {
+                        alert('Erro ao enviar o formulário. Por favor, tente novamente.');
+                    }
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                    alert('Erro ao enviar o formulário. Por favor, tente novamente.');
+                });
+            } else {
+                // Alert about required fields
+                if (document.querySelector('.lang-pt').classList.contains('hidden')) {
+                    alert("Por favor, complete todos los campos requeridos.");
+                } else {
+                    alert("Por favor, preencha todos os campos obrigatórios.");
+                }
+            }
+        });
+    </script>
+</body>
+</html>
