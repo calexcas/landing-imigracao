@@ -94,6 +94,36 @@
             text-decoration: underline;
         }
 
+        .language-toggle button {
+            transition: all 0.3s ease;
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .language-toggle button:hover {
+            background-color: rgba(255, 255, 255, 0.2);
+        }
+
+        .flag-icon {
+            width: 20px;
+            height: 15px;
+            object-fit: cover;
+            border-radius: 2px;
+            display: inline-block;
+            vertical-align: middle;
+        }
+
+        .service-card {
+            transition: all 0.3s ease;
+        }
+
+        .service-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 15px rgba(0, 119, 182, 0.2);
+        }
+
         /* Ensure form inputs are visible in PDF */
         @media print {
             input, select, textarea {
@@ -112,8 +142,14 @@
         <!-- Language Toggle -->
         <div class="flex justify-end mb-4">
             <div class="language-toggle glass-card p-2 inline-flex rounded-full">
-                <button id="pt-btn" class="px-3 py-1 language-active" onclick="changeLanguage('pt')">PT</button>
-                <button id="es-btn" class="px-3 py-1" onclick="changeLanguage('es')">ES</button>
+                <button id="pt-btn" class="px-3 py-1 language-active flex items-center gap-2" onclick="changeLanguage('pt')">
+                    <img src="https://flagpedia.net/data/flags/mini/br.png" alt="Brasil" class="flag-icon">
+                    PT
+                </button>
+                <button id="es-btn" class="px-3 py-1 flex items-center gap-2" onclick="changeLanguage('es')">
+                    <img src="https://flagpedia.net/data/flags/mini/es.png" alt="Espanha" class="flag-icon">
+                    ES
+                </button>
             </div>
         </div>
 
@@ -160,6 +196,10 @@
                                 <i class="fas fa-check-circle text-green-600 mt-1 mr-2"></i>
                                 <span>Preços acessíveis e planos flexíveis</span>
                             </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-check-circle text-green-600 mt-1 mr-2"></i>
+                                <span>Especialistas em casos complexos e especiais</span>
+                            </li>
                         </ul>
                     </div>
                     <div class="lang-es hidden">
@@ -188,6 +228,10 @@
                                 <i class="fas fa-check-circle text-green-600 mt-1 mr-2"></i>
                                 <span>Precios accesibles y planes flexibles</span>
                             </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-check-circle text-green-600 mt-1 mr-2"></i>
+                                <span>Especialistas en casos complejos y especiales</span>
+                            </li>
                         </ul>
                     </div>
                 </div>
@@ -199,21 +243,39 @@
                             Nossos Serviços
                         </h2>
                         <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                            <div class="p-4 bg-blue-50 rounded-lg">
+                            <div class="service-card p-4 bg-blue-50 rounded-lg">
                                 <i class="fas fa-passport text-blue-800 text-2xl mb-2"></i>
                                 <h3 class="font-medium">Vistos de Trabalho</h3>
                             </div>
-                            <div class="p-4 bg-blue-50 rounded-lg">
+                            <div class="service-card p-4 bg-blue-50 rounded-lg">
                                 <i class="fas fa-user-graduate text-blue-800 text-2xl mb-2"></i>
                                 <h3 class="font-medium">Vistos de Estudo</h3>
                             </div>
-                            <div class="p-4 bg-blue-50 rounded-lg">
+                            <div class="service-card p-4 bg-blue-50 rounded-lg">
                                 <i class="fas fa-home text-blue-800 text-2xl mb-2"></i>
                                 <h3 class="font-medium">Residência Permanente</h3>
                             </div>
-                            <div class="p-4 bg-blue-50 rounded-lg">
+                            <div class="service-card p-4 bg-blue-50 rounded-lg">
                                 <i class="fas fa-users text-blue-800 text-2xl mb-2"></i>
                                 <h3 class="font-medium">Reunificação Familiar</h3>
+                            </div>
+                            <div class="service-card p-4 bg-green-50 rounded-lg">
+                                <i class="fas fa-flag text-green-800 text-2xl mb-2"></i>
+                                <h3 class="font-medium">Aplicação de Cidadania</h3>
+                            </div>
+                            <div class="service-card p-4 bg-green-50 rounded-lg">
+                                <i class="fas fa-chart-line text-green-800 text-2xl mb-2"></i>
+                                <h3 class="font-medium">Visto de Investidor</h3>
+                            </div>
+                            <div class="service-card p-4 bg-purple-50 rounded-lg">
+                                <i class="fas fa-shield-alt text-purple-800 text-2xl mb-2"></i>
+                                <h3 class="font-medium">VAWA</h3>
+                                <p class="text-xs text-gray-600 mt-1">Proteção à Violência Doméstica</p>
+                            </div>
+                            <div class="service-card p-4 bg-purple-50 rounded-lg">
+                                <i class="fas fa-hands-helping text-purple-800 text-2xl mb-2"></i>
+                                <h3 class="font-medium">Visto U</h3>
+                                <p class="text-xs text-gray-600 mt-1">Vítimas de Crimes</p>
                             </div>
                         </div>
                     </div>
@@ -223,21 +285,39 @@
                             Nuestros Servicios
                         </h2>
                         <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                            <div class="p-4 bg-blue-50 rounded-lg">
+                            <div class="service-card p-4 bg-blue-50 rounded-lg">
                                 <i class="fas fa-passport text-blue-800 text-2xl mb-2"></i>
                                 <h3 class="font-medium">Visados de Trabajo</h3>
                             </div>
-                            <div class="p-4 bg-blue-50 rounded-lg">
+                            <div class="service-card p-4 bg-blue-50 rounded-lg">
                                 <i class="fas fa-user-graduate text-blue-800 text-2xl mb-2"></i>
                                 <h3 class="font-medium">Visados de Estudio</h3>
                             </div>
-                            <div class="p-4 bg-blue-50 rounded-lg">
+                            <div class="service-card p-4 bg-blue-50 rounded-lg">
                                 <i class="fas fa-home text-blue-800 text-2xl mb-2"></i>
                                 <h3 class="font-medium">Residencia Permanente</h3>
                             </div>
-                            <div class="p-4 bg-blue-50 rounded-lg">
+                            <div class="service-card p-4 bg-blue-50 rounded-lg">
                                 <i class="fas fa-users text-blue-800 text-2xl mb-2"></i>
                                 <h3 class="font-medium">Reunificación Familiar</h3>
+                            </div>
+                            <div class="service-card p-4 bg-green-50 rounded-lg">
+                                <i class="fas fa-flag text-green-800 text-2xl mb-2"></i>
+                                <h3 class="font-medium">Aplicación de Ciudadanía</h3>
+                            </div>
+                            <div class="service-card p-4 bg-green-50 rounded-lg">
+                                <i class="fas fa-chart-line text-green-800 text-2xl mb-2"></i>
+                                <h3 class="font-medium">Visa de Inversionista</h3>
+                            </div>
+                            <div class="service-card p-4 bg-purple-50 rounded-lg">
+                                <i class="fas fa-shield-alt text-purple-800 text-2xl mb-2"></i>
+                                <h3 class="font-medium">VAWA</h3>
+                                <p class="text-xs text-gray-600 mt-1">Protección Violencia Doméstica</p>
+                            </div>
+                            <div class="service-card p-4 bg-purple-50 rounded-lg">
+                                <i class="fas fa-hands-helping text-purple-800 text-2xl mb-2"></i>
+                                <h3 class="font-medium">Visa U</h3>
+                                <p class="text-xs text-gray-600 mt-1">Víctimas de Crímenes</p>
                             </div>
                         </div>
                     </div>
@@ -313,6 +393,14 @@
                                 <option value="Visto_Expirado" class="lang-es hidden">Visa expirada o por expirar</option>
                                 <option value="Reunificacao" class="lang-pt">Reunificação familiar</option>
                                 <option value="Reunificacao" class="lang-es hidden">Reunificación familiar</option>
+                                <option value="Cidadania" class="lang-pt">Processo de cidadania</option>
+                                <option value="Cidadania" class="lang-es hidden">Proceso de ciudadanía</option>
+                                <option value="Investidor" class="lang-pt">Visto de investidor</option>
+                                <option value="Investidor" class="lang-es hidden">Visa de inversionista</option>
+                                <option value="VAWA" class="lang-pt">VAWA - Violência doméstica</option>
+                                <option value="VAWA" class="lang-es hidden">VAWA - Violencia doméstica</option>
+                                <option value="Visto_U" class="lang-pt">Visto U - Vítima de crime</option>
+                                <option value="Visto_U" class="lang-es hidden">Visa U - Víctima de crimen</option>
                                 <option value="Situacao_Irregular" class="lang-pt">Situação irregular</option>
                                 <option value="Situacao_Irregular" class="lang-es hidden">Situación irregular</option>
                                 <option value="Outro" class="lang-pt">Outro</option>
@@ -335,7 +423,10 @@
                             </button>
                         </div>
                         
-                        
+                    </div>
+                </form>
+            </div>
+        </div>
 
         <!-- Footer -->
         <footer class="mt-12 text-center text-gray-700">
